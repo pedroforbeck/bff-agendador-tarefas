@@ -1,4 +1,4 @@
-package com.javapr.usuario.business.dto;
+package com.javapr.bff_agendador_tarefas.business.dto;
 
 import lombok.*;
 

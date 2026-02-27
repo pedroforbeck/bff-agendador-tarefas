@@ -1,4 +1,4 @@
-package com.java.agendadortarefas.controller;
+package com.javapr.bff_agendador_tarefas.controller;
 
 import com.java.agendadortarefas.business.TarefasService;
 import com.java.agendadortarefas.business.dto.TarefasDTO;
@@ -8,7 +8,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 

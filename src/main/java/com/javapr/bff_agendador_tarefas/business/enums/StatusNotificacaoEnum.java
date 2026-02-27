@@ -1,4 +1,4 @@
-package com.java.agendadortarefas.infrastructure.enums;
+package com.javapr.bff_agendador_tarefas.business.enums;
 
 public enum StatusNotificacaoEnum {
     PENDENTE, NOTIFICADO, CANCELADO

@@ -1,50 +1,40 @@
 package com.javapr.bff_agendador_tarefas.infrasctructure.client;
 
 
-import com.javapr.bff_agendador_tarefas.business.dto.EnderecoDTO;
-import com.javapr.bff_agendador_tarefas.business.dto.TelefoneDTO;
-import com.javapr.bff_agendador_tarefas.business.dto.UsuarioDTO;
+import com.javapr.bff_agendador_tarefas.business.dto.TarefasDTO;
+import com.javapr.bff_agendador_tarefas.business.enums.StatusNotificacaoEnum;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(name = "usuario", url = "${usuario.url}")
-public interface UsuarioClient {
+import java.time.LocalDateTime;
+import java.util.List;
 
-    @GetMapping
-    UsuarioDTO buscaUsuarioPorEmail(@RequestParam("email") String email,
-                                    @RequestHeader("Authorization") String token);
+@FeignClient(name = "agendador-tarefas", url = "${agendador-tarefas.url}")
+public interface TarefasClient {
 
     @PostMapping
-    UsuarioDTO salvaUsuario(@RequestBody UsuarioDTO usuarioDTO);
+    TarefasDTO gravarTarefas(@RequestBody TarefasDTO dto,
+                             @RequestHeader("Authorization") String token);
 
-    @PostMapping("/login")
-    String login(@RequestBody UsuarioDTO usuarioDTO);
+    @GetMapping("/eventos")
+    List<TarefasDTO> buscaListaDeTarefasPorPeriodo(
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicial,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFinal,
+            @RequestHeader("Authorization") String token);
 
+    @GetMapping
+    List<TarefasDTO> buscaTarefaPorEmail(@RequestHeader("Authorization") String token);
 
-    @DeleteMapping("/{email}")
-    void deletaUsuarioPorEmail(@PathVariable String email,
-                               @RequestHeader("Authorization") String token);
+    @DeleteMapping
+    void deletaTarefaPorId(@RequestParam("id") String id,
+                           @RequestHeader("Authorization") String token);
 
+    @PatchMapping
+    TarefasDTO alteraStatusNotificacao(@RequestParam("status") StatusNotificacaoEnum status,
+                                       @RequestParam("id") String id);
 
     @PutMapping
-    UsuarioDTO atualizaDadoUsuario(@RequestBody UsuarioDTO dto,
-                                   @RequestHeader("Authorization") String token);
-
-    @PutMapping("/endereco")
-    EnderecoDTO atualizaEndereco(@RequestBody EnderecoDTO dto,
-                                 @RequestParam("id") Long id,
-                                 @RequestHeader("Authorization") String token);
-
-    @PutMapping("/telefone")
-    TelefoneDTO atualizaTelefone(@RequestBody TelefoneDTO dto,
-                                 @RequestParam("id") Long id,
-                                 @RequestHeader("Authorization") String token);
-
-    @PostMapping("/endereco")
-    EnderecoDTO cadastraEndereco(@RequestBody EnderecoDTO dto,
-                                 @RequestHeader("Authorization") String token);
-
-    @PostMapping("/telefone")
-    TelefoneDTO cadastraTelefone(@RequestBody TelefoneDTO dto,
-                                 @RequestHeader("Authorization") String token);
+    TarefasDTO updateTarefas(@RequestBody TarefasDTO dto,
+                             @RequestParam("id") String id);
 }

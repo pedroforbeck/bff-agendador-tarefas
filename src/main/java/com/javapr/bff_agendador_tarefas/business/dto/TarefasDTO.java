@@ -1,11 +1,10 @@
-package com.java.agendadortarefas.business.dto;
+package com.javapr.bff_agendador_tarefas.business.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.java.agendadortarefas.infrastructure.enums.StatusNotificacaoEnum;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.regex.Pattern;
 
 @Getter
 @Setter

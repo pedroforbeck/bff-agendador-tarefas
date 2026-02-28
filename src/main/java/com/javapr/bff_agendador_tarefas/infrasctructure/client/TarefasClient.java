@@ -32,9 +32,11 @@ public interface TarefasClient {
 
     @PatchMapping
     TarefasDTO alteraStatusNotificacao(@RequestParam("status") StatusNotificacaoEnum status,
-                                       @RequestParam("id") String id);
+                                       @RequestParam("id") String id,
+                                       @RequestHeader("Authorization") String token);
 
     @PutMapping
     TarefasDTO updateTarefas(@RequestBody TarefasDTO dto,
-                             @RequestParam("id") String id);
+                             @RequestParam("id") String id,
+                             @RequestHeader("Authorization") String token);
 }

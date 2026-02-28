@@ -42,16 +42,8 @@ public class TarefasService {
     }
 
 
-    public TarefasDTO updateTarefas(TarefasDTO dto, String id) {
-        try {
-            TarefasEntity entity = tarefasRepository.findById(id).
-                    orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada " + id));
-            tarefaUpdateConverter.updateTarefas(dto, entity);
-            return tarefaConverter.paraTarefasDTO(tarefasRepository.save(entity));
-
-        } catch (ResourceNotFoundException e) {
-            throw new ResourceNotFoundException("Erro ao alteras satus da tarefa " + e.getCause());
-        }
+    public TarefasDTO updateTarefas(TarefasDTO dto, String id, String token) {
+       return tarefasClient.updateTarefas(dto, id, token);
     }
 
 }

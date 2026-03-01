@@ -1,8 +1,13 @@
 <div align="center">
+  
+  <br>
+  <img src="https://icongr.am/feather/server.svg?size=48&color=A1A1A6" />
 
-
-  ![Logo](https://github.com/pedroforbeck/bff-agendador-tarefas/blob/master/greyscheduler.png?raw=true)
-  <h1><b></b></h1>
+  <br>
+  
+  <h1 style="color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+    <b>TASK SCHEDULER</b>
+  </h1>
   <p style="color: #A1A1A6;"><i>Backend-For-Frontend Gateway & Microservices Ecosystem</i></p>
 
   <a href="https://github.com/pedroforbeck">

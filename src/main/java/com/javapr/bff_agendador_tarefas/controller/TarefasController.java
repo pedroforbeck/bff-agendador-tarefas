@@ -2,10 +2,13 @@ package com.javapr.bff_agendador_tarefas.controller;
 
 
 import com.javapr.bff_agendador_tarefas.business.TarefasService;
-import com.javapr.bff_agendador_tarefas.business.dto.TarefasDTO;
+import com.javapr.bff_agendador_tarefas.business.dto.in.TarefasDTORequest;
+import com.javapr.bff_agendador_tarefas.business.dto.out.TarefasDTOResponse;
 import com.javapr.bff_agendador_tarefas.business.enums.StatusNotificacaoEnum;
+import com.javapr.bff_agendador_tarefas.infrasctructure.security.SecurityConfig;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -19,7 +22,7 @@ import java.util.List;
 @RequestMapping("/tarefas")
 @RequiredArgsConstructor
 @Tag(name = "Tarefas", description = "Cadastra tarefas de usuários")
-
+@SecurityRequirement(name = SecurityConfig.SECURITY_SCHEME)
 public class TarefasController {
 
     private final TarefasService tarefasService;
@@ -28,8 +31,8 @@ public class TarefasController {
     @Operation(summary = "Salvar tarefas de usuários", description = "Cria nova tarefa")
     @ApiResponse(responseCode = "200", description = "Tarefa salva com sucesso")
     @ApiResponse(responseCode = "500", description = "Erro de servidor")
-    public ResponseEntity<TarefasDTO> gravarTarefas(@RequestBody TarefasDTO dto,
-                                                    @RequestHeader("Authorization") String token) {
+    public ResponseEntity<TarefasDTOResponse> gravarTarefas(@RequestBody TarefasDTORequest dto,
+                                                            @RequestHeader (name = "Authorization" , required= false)String token) {
         return ResponseEntity.ok(tarefasService.gravarTarefa(token, dto));
     }
 
@@ -37,19 +40,19 @@ public class TarefasController {
     @Operation(summary = "Busca tarefas por Período", description = "Busca tarefas cadastradas por Período")
     @ApiResponse(responseCode = "200", description = "Tarefa encontrada")
     @ApiResponse(responseCode = "500", description = "Erro de servidor")
-    public ResponseEntity<List<TarefasDTO>> buscaListaDeTarefasPorPeriodo(
+    public ResponseEntity<List<TarefasDTOResponse>> buscaListaDeTarefasPorPeriodo(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicial,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFinal,
-            @RequestHeader("Authorization") String token) {
+            @RequestHeader (name = "Authorization" , required= false)String token) {
 
         return ResponseEntity.ok(tarefasService.buscaTarefasAgendadasPorPeriodo(dataInicial, dataFinal,  token));
     }
 
     @GetMapping
-    @Operation(summary = "Busca lista de tarefas por Email de usuário", description = "Busca tarefas cadastradas por Período")
+    @Operation(summary = "Busca lista de tarefas por Email de usuário", description = "Busca tarefas cadastradas por  usuário")
     @ApiResponse(responseCode = "200", description = "Tarefa encontrada")
     @ApiResponse(responseCode = "500", description = "Erro de servidor")
-    public ResponseEntity<List<TarefasDTO>> buscaTarefaPorEmail(@RequestHeader("Authorization") String token) {
+    public ResponseEntity<List<TarefasDTOResponse>> buscaTarefaPorEmail(@RequestHeader (name = "Authorization" , required= false)String token) {
 
         return ResponseEntity.ok(tarefasService.buscaTarefasPorEmail(token));
 
@@ -71,9 +74,9 @@ public class TarefasController {
     @Operation(summary = "Altera status de tarefas", description = "Altera status das tarefas cadastradas")
     @ApiResponse(responseCode = "200", description = "Status da Tarefas alteradas")
     @ApiResponse(responseCode = "500", description = "Erro de servidor")
-    public ResponseEntity<TarefasDTO> alteraStatusNotificacao(@RequestParam("status") StatusNotificacaoEnum status,
-                                                              @RequestParam("id") String id,
-                                                              @RequestHeader ("Authorization")String token) {
+    public ResponseEntity<TarefasDTOResponse> alteraStatusNotificacao(@RequestParam("status") StatusNotificacaoEnum status,
+                                                                      @RequestParam("id") String id,
+                                                                      @RequestHeader ("Authorization")String token) {
 
         return ResponseEntity.ok(tarefasService.alteraStatus(status, id, token));
     }
@@ -82,8 +85,8 @@ public class TarefasController {
     @Operation(summary = "Altera dados de tarefas", description = "Altera dados das tarefas cadastradas")
     @ApiResponse(responseCode = "200", description = "Tarefas alteradas")
     @ApiResponse(responseCode = "500", description = "Erro de servidor")
-    public ResponseEntity<TarefasDTO> updateTarefas(@RequestBody TarefasDTO dto, @RequestParam("id") String id,
-                                                    @RequestHeader ("Authorization")String token) {
+    public ResponseEntity<TarefasDTOResponse> updateTarefas(@RequestBody TarefasDTORequest dto, @RequestParam("id") String id,
+                                                            @RequestHeader ("Authorization")String token) {
         return ResponseEntity.ok(tarefasService.updateTarefas(dto, id, token));
     }
 

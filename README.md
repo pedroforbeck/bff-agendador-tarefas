@@ -21,6 +21,7 @@
   <img src="https://img.shields.io/badge/Java_17-1C1C1E?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java" />
   <img src="https://img.shields.io/badge/Spring_Boot-1C1C1E?style=for-the-badge&logo=spring-boot&logoColor=white" alt="Spring Boot" />
   <img src="https://img.shields.io/badge/PostgreSQL-1C1C1E?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
+  <img src="https://img.shields.io/badge/Docker-1C1C1E?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
   <img src="https://img.shields.io/badge/JWT_Auth-1C1C1E?style=for-the-badge&logo=jsonwebtokens&logoColor=white" alt="JWT" />
 
   <br><br>
@@ -44,9 +45,10 @@
 - [Ecosystem Architecture](#-ecosystem-architecture)
 - [Core Capabilities](#-core-capabilities)
 - [System Demonstration](#-system-demonstration)
--[Deployment & Orchestration](#-deployment--orchestration)
-  - [1. Workspace Initialization](#1-workspace-initialization)
-  - [2. Bootstrapping Services](#2-bootstrapping-services)
+- [Deployment & Orchestration](#-deployment--orchestration)
+  - [1. Docker Deployment](#1-docker-deployment)
+  - [2. Workspace Initialization](#2-workspace-initialization)
+  - [3. Bootstrapping Services](#3-bootstrapping-services)
 - [API Reference](#-api-reference)
 
 ---
@@ -123,9 +125,22 @@ graph TD;
 
 ## <img src="https://icongr.am/feather/terminal.svg?size=24&color=A1A1A6" align="absmiddle" /> Deployment & Orchestration
 
-To run the ecosystem locally, all microservices must be instantiated in the correct sequence. Ensure you have **Java 17+**, **Maven 3.8+**, and **PostgreSQL** installed.
+### 1. Docker Deployment
+For a streamlined, containerized approach, you can easily pull the pre-built application image directly from the Docker registry:
 
-### 1. Workspace Initialization
+```bash
+docker pull pedroforbeck/bff-agendador-tarefas:latest
+```
+
+> **Registry & Resources:**
+> * <img src="https://icongr.am/feather/box.svg?size=14&color=A1A1A6" align="absmiddle" /> **Docker Hub:**[pedroforbeck/bff-agendador-tarefas](https://hub.docker.com/repository/docker/pedroforbeck/bff-agendador-tarefas/general)
+> * <img src="https://icongr.am/feather/github.svg?size=14&color=A1A1A6" align="absmiddle" /> **Source Code:** [GitHub Repository](https://github.com/pedroforbeck/bff-agendador-tarefas)
+
+<br>
+
+### 2. Workspace Initialization
+To run the ecosystem locally from source, all microservices must be instantiated in the correct sequence. Ensure you have **Java 17+**, **Maven 3.8+**, and **PostgreSQL** installed.
+
 Create an isolated directory and clone the complete ecosystem repository suite:
 
 ```bash
@@ -140,7 +155,7 @@ git clone https://github.com/pedroforbeck/notificacao.git
 git clone https://github.com/pedroforbeck/bff-agendador-tarefas.git
 ```
 
-### 2. Bootstrapping Services
+### 3. Bootstrapping Services
 Ensure your PostgreSQL instance is running and the required databases are created. Open separate terminal instances for each service and execute them in the following order:
 
 **Terminal A: Identity Provider**
@@ -182,7 +197,7 @@ cd bff-agendador-tarefas
 
 The ecosystem implements **OpenAPI 3.0** specifications. Once the BFF Gateway is active, the complete schema and interactive UI are exposed at:
 
-* **Swagger UI:**[`http://localhost:8080/swagger-ui.html`](http://localhost:8080/swagger-ui.html)
+* **Swagger UI:** [`http://localhost:8080/swagger-ui.html`](http://localhost:8080/swagger-ui.html)
 * **Raw JSON Schema:**[`http://localhost:8080/v3/api-docs`](http://localhost:8080/v3/api-docs)
 
 ---

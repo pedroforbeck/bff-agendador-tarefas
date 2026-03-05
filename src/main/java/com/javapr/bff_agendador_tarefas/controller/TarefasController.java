@@ -54,7 +54,7 @@ public class TarefasController {
     @Operation(summary = "Busca lista de tarefas por Email de usuário", description = "Busca tarefas cadastradas por  usuário")
     @ApiResponse(responseCode = "200", description = "Tarefa encontrada")
     @ApiResponse(responseCode = "500", description = "Erro de servidor")
-    @ApiResponse(responseCode = "403", description = "Email não encontrado")
+    @ApiResponse(responseCode = "404", description = "Email não encontrado")
     @ApiResponse(responseCode = "401", description = "Usuário não autorizado")
     public ResponseEntity<List<TarefasDTOResponse>> buscaTarefaPorEmail(@RequestHeader (name = "Authorization" , required= false)String token) {
 
@@ -66,7 +66,7 @@ public class TarefasController {
     @Operation(summary = "Deleta tarefas por Id", description = "Deleta tarefas cadastradas por Id")
     @ApiResponse(responseCode = "200", description = "Tarefa deletada")
     @ApiResponse(responseCode = "500", description = "Erro de servidor")
-    @ApiResponse(responseCode = "403", description = "Tarefa Id não encontrada")
+    @ApiResponse(responseCode = "404", description = "Tarefa Id não encontrada")
     @ApiResponse(responseCode = "401", description = "Usuário não autorizado")
     public ResponseEntity<Void> deletaTarefaPorId(@RequestParam("id") String id,
                                                   @RequestHeader ("Authorization")String token) {
@@ -80,7 +80,7 @@ public class TarefasController {
     @Operation(summary = "Altera status de tarefas", description = "Altera status das tarefas cadastradas")
     @ApiResponse(responseCode = "200", description = "Status da Tarefas alteradas")
     @ApiResponse(responseCode = "500", description = "Erro de servidor")
-    @ApiResponse(responseCode = "403", description = "Tarefa Id não encontrada")
+    @ApiResponse(responseCode = "404", description = "Tarefa Id não encontrada")
     @ApiResponse(responseCode = "401", description = "Usuário não autorizado")
     public ResponseEntity<TarefasDTOResponse> alteraStatusNotificacao(@RequestParam("status") StatusNotificacaoEnum status,
                                                                       @RequestParam("id") String id,
@@ -93,7 +93,7 @@ public class TarefasController {
     @Operation(summary = "Altera dados de tarefas", description = "Altera dados das tarefas cadastradas")
     @ApiResponse(responseCode = "200", description = "Tarefas alteradas")
     @ApiResponse(responseCode = "500", description = "Erro de servidor")
-    @ApiResponse(responseCode = "403", description = "Tarefa Id não encontrada")
+    @ApiResponse(responseCode = "404", description = "Tarefa Id não encontrada")
     @ApiResponse(responseCode = "401", description = "Usuário não autorizado")
     public ResponseEntity<TarefasDTOResponse> updateTarefas(@RequestBody TarefasDTORequest dto, @RequestParam("id") String id,
                                                             @RequestHeader ("Authorization")String token) {

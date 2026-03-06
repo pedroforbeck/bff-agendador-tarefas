@@ -115,7 +115,7 @@ graph TD;
 
 <!-- Recording -->
 <div align="center">
-  <img src="https://github.com/pedroforbeck/bff-agendador-tarefas/blob/master/swaggerdocs.gif?raw=true" width="800" style="border-radius: 12px; border: 1px solid #30363D; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+  <img src="https://github.com/pedroforbeck/bff-agendador-tarefas/blob/master/gifswagger.gif?raw=true" width="800" style="border-radius: 12px; border: 1px solid #30363D; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
   <br><br>
   <p style="color: #A1A1A6;"><i>Interactive API documentation and workflow testing via Swagger UI.</i></p>
 </div>

@@ -28,7 +28,6 @@
 
   <!-- Architecture Badges (Space Gray Aesthetic) -->
   <img src="https://img.shields.io/badge/Security-JWT%20%2B%20RBAC-1C1C1E?style=for-the-badge&logo=jsonwebtokens&logoColor=white" alt="Security" />
-  <img src="https://img.shields.io/badge/Architecture-Event%20Driven-1C1C1E?style=for-the-badge&logo=apachekafka&logoColor=white" alt="Event Driven" />
   <img src="https://img.shields.io/badge/Pattern-BFF%20Gateway-1C1C1E?style=for-the-badge&logo=diagramsdotnet&logoColor=white" alt="Pattern" />
 
 </div>
